@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f9fc;
+  --foreground: #102a43;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.96), transparent 34rem),
+    linear-gradient(180deg, #dceff5 0%, #f7f9fc 45%, #e8f1e7 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(52, 126, 111, 0.12) 50%, transparent 50.2%),
+    linear-gradient(0deg, transparent 49.8%, rgba(52, 126, 111, 0.12) 50%, transparent 50.2%),
+    radial-gradient(ellipse at center, transparent 0 17%, rgba(52, 126, 111, 0.12) 17.2% 17.5%, transparent 17.7%),
+    linear-gradient(180deg, transparent 0 65%, rgba(104, 158, 109, 0.12) 65.2% 65.5%, transparent 65.7%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  content: "";
+  pointer-events: none;
+}
+
+.battle-arena {
+  min-height: 100svh;
+  background:
+    radial-gradient(ellipse at 50% 34%, rgba(255, 255, 255, 0.96) 0 15%, rgba(216, 239, 244, 0.68) 34%, transparent 58%),
+    linear-gradient(180deg, #a9dce8 0%, #d7eff0 42%, #8fc28b 42.2%, #57986a 100%);
+}
+
+.battle-arena::before {
+  position: absolute;
+  z-index: -1;
+  inset: 42% 0 0;
+  background:
+    linear-gradient(90deg, transparent 49.65%, rgba(255, 255, 255, 0.42) 49.8% 50.2%, transparent 50.35%),
+    linear-gradient(0deg, transparent 49.65%, rgba(255, 255, 255, 0.42) 49.8% 50.2%, transparent 50.35%),
+    radial-gradient(ellipse at center, transparent 0 18%, rgba(255, 255, 255, 0.58) 18.2% 18.7%, transparent 18.9%),
+    repeating-linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 38px);
+  content: "";
+  pointer-events: none;
+}
+
+.battle-arena::after {
+  position: absolute;
+  z-index: -1;
+  top: 41%;
+  left: 50%;
+  width: min(78vw, 880px);
+  height: min(20vw, 230px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.13), transparent 68%);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.pokemon-trainer-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 252, 0.94)),
+    repeating-linear-gradient(135deg, transparent 0 18px, rgba(16, 42, 67, 0.025) 18px 20px);
+}
+
+.pokemon-trainer-card::after {
+  position: absolute;
+  right: -24px;
+  bottom: -34px;
+  width: 120px;
+  height: 120px;
+  border: 14px solid rgba(232, 68, 68, 0.07);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.pokemon-trainer-card--selected {
+  box-shadow: 0 16px 35px -24px rgba(16, 42, 67, 0.55);
+}
+
+.pokemon-trainer-card--bulbasaur::before,
+.pokemon-trainer-card--squirtle::before,
+.pokemon-trainer-card--charmander::before {
+  position: absolute;
+  right: 10px;
+  bottom: -16px;
+  font-size: 4.5rem;
+  opacity: 0.12;
+  transform: rotate(-12deg);
+  animation: mascot-float 3s ease-in-out infinite;
+  content: "";
+  pointer-events: none;
+}
+
+.pokemon-trainer-card--bulbasaur::before {
+  content: "🌿";
+}
+
+.pokemon-trainer-card--squirtle::before {
+  content: "💧";
+}
+
+.pokemon-trainer-card--charmander::before {
+  content: "🔥";
+}
+
+.pokemon-trainer-card--bulbasaur .pokemon-card-accent {
+  box-shadow: 0 0 18px #3d8b63;
+}
+
+.pokemon-trainer-card--squirtle .pokemon-card-accent {
+  box-shadow: 0 0 18px #3c82c4;
+}
+
+.pokemon-trainer-card--charmander .pokemon-card-accent {
+  box-shadow: 0 0 18px #e36a42;
+}
+
+.winner-celebration {
+  animation: winner-card 900ms ease-in-out infinite alternate;
+}
+
+.win-pop {
+  animation: winning-cell 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes mascot-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(-5deg);
+  }
+}
+
+@keyframes winner-card {
+  from {
+    transform: translateY(0) rotate(0);
+    box-shadow: 0 18px 38px -25px rgba(232, 68, 68, 0.45);
+  }
+  to {
+    transform: translateY(-5px) rotate(-0.5deg);
+    box-shadow: 0 22px 40px -22px rgba(232, 68, 68, 0.72);
+  }
+}
+
+@keyframes winning-cell {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.75) rotate(-8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.12) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pokemon-trainer-card--bulbasaur::before,
+  .pokemon-trainer-card--squirtle::before,
+  .pokemon-trainer-card--charmander::before,
+  .winner-celebration,
+  .win-pop {
+    animation: none;
+  }
+}
+
+.pokemon-card-accent {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  left: 18px;
+  height: 4px;
+  border-radius: 0 0 999px 999px;
+  content: "";
+}
+
+.trainer-badge {
+  background: #edf3f7;
+  color: #64798b;
+}
+
+.pokemon-trainer-card:first-child .trainer-badge {
+  background: #fff0ea;
+  color: #d6503c;
+}
+
+.pokemon-trainer-card:nth-child(2) .trainer-badge {
+  background: #eaf4fc;
+  color: #3272ae;
+}
+
+.scoreboard-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.scoreboard-panel--active::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 46px;
+  height: 2px;
+  background: #e84444;
+  content: "";
+}
+
+.battle-board {
+  position: relative;
+  box-shadow: 0 24px 55px -30px rgba(16, 42, 67, 0.5);
+}
+
+.battle-board::before {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 56px;
+  height: 16px;
+  border: 3px solid #e84444;
+  border-radius: 999px;
+  background: #fffdf7;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.battle-grid {
+  position: relative;
+  background:
+    linear-gradient(90deg, transparent 49.2%, rgba(232, 68, 68, 0.38) 49.5% 50.5%, transparent 50.8%),
+    linear-gradient(0deg, transparent 49.2%, rgba(232, 68, 68, 0.38) 49.5% 50.5%, transparent 50.8%),
+    #fff0d3;
+}
+
+.battle-cell {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 420px) {
+  .pokemon-trainer-card {
+    padding: 0.75rem;
+  }
+
+  .pokemon-trainer-card .scoreboard-panel {
+    margin-top: 0.75rem;
+  }
+
+  .battle-board .battle-cell {
+    border-radius: 0.7rem;
+  }
+}

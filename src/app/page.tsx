@@ -407,27 +407,19 @@ function PokemonPicker({
           const selected = choice === pokemon;
           const takenByOtherTrainer = unavailable === pokemon;
           return (
-<<<<<<< HEAD
             <div
               key={pokemon}
               className={choice ? "flex flex-col items-stretch gap-2 sm:flex-row sm:items-center" : ""}
             >
-=======
-            <div key={pokemon} className={choice ? "flex items-center gap-2" : ""}>
->>>>>>> 6064ac11d62fc11833f25ae0787e42937d7e18c6
               <button
                 type="button"
                 onClick={() => onChoose(player, pokemon)}
                 disabled={disabled || takenByOtherTrainer}
                 aria-label={`${pokemon}${takenByOtherTrainer ? ", already chosen by the other trainer" : ""}`}
                 className={`rounded-2xl border p-2 text-left transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 ${
-<<<<<<< HEAD
                   choice
                     ? "flex min-w-0 flex-1 items-center gap-3 px-3 py-3"
                     : "flex min-h-[92px] w-full min-w-0 flex-col items-center justify-center px-1 py-1.5 text-center sm:min-h-0 sm:p-2"
-=======
-                  choice ? "flex min-w-0 flex-1 items-center gap-3 px-3 py-3" : "min-h-[92px] px-1 py-1.5 sm:min-h-0 sm:p-2"
->>>>>>> 6064ac11d62fc11833f25ae0787e42937d7e18c6
                 }`}
                 style={{
                   borderColor: selected ? details.color : "#e2e8f0",
@@ -449,11 +441,7 @@ function PokemonPicker({
                   size="sm"
                   onClick={() => onChange(player)}
                   disabled={disabled}
-<<<<<<< HEAD
                   className="w-full shrink-0 sm:w-auto"
-=======
-                  className="shrink-0"
->>>>>>> 6064ac11d62fc11833f25ae0787e42937d7e18c6
                 >
                   Change
                 </Button>
